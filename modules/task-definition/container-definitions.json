@@ -1,0 +1,17 @@
+[
+	{
+		"essential": true,
+		"name": "nginx-container",
+		"image": "nginx:latest",
+		"cpu": 0,
+		"portMappings": [
+			{
+				"name": "nginx-port80-tcp",
+				"containerPort": 80,
+				"hostPort": 80,
+				"protocol": "tcp",
+				"appProtocol": "http"
+			}
+		]
+	}
+]
