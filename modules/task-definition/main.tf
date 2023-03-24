@@ -36,6 +36,10 @@ variable "ports" {
   description = "containerPort, hostPort, protocol, appProtocol"
 }
 
+variable "task_role_arn" {
+  type = string
+}
+
 resource "aws_ecs_task_definition" "task_def" {
   family = var.family
 
@@ -44,10 +48,9 @@ resource "aws_ecs_task_definition" "task_def" {
   memory                   = var.memory
   network_mode             = var.network_mode
 
-  #TODO crear role IAM
   #! sin este permiso, la tarea no tiene permisos esenciales como descargar imagenes
-  task_role_arn      = "arn:aws:iam::681508469066:role/ecsTaskExecutionRole"
-  execution_role_arn = "arn:aws:iam::681508469066:role/ecsTaskExecutionRole"
+  task_role_arn      = var.task_role_arn
+  execution_role_arn = var.task_role_arn
 
   #! Con ruta relativa no lo toma
   container_definitions = file("/modules/task-definition/container-definitions.json")

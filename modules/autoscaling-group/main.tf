@@ -18,6 +18,10 @@ variable "subnet_ids" {
   type = list(string)
 }
 
+variable "iam_instance_role_arn" {
+  type = string
+}
+
 resource "aws_launch_template" "launch_template" {
   name        = "terra-launch-template"
   description = "linux 2 ECS template"
